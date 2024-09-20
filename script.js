@@ -1,66 +1,23 @@
-* {
-    box-sizing: border-box;
-}
+document.getElementById("upload-btn").addEventListener("click", function() {
+    const fileInput = document.getElementById("file-input");
+    const fileList = document.getElementById("file-list");
+    const uploadStatus = document.getElementById("upload-status");
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-}
+    if (fileInput.files.length === 0) {
+        uploadStatus.textContent = "Please select a file to upload.";
+        return;
+    }
 
-.container {
-    max-width: 800px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+    const files = fileInput.files;
+    uploadStatus.textContent = "";
 
-h1 {
-    text-align: center;
-}
+    // Simulate file upload
+    for (let i = 0; i < files.length; i++) {
+        const fileItem = document.createElement("li");
+        fileItem.textContent = `${files[i].name} - ${files[i].size} bytes`;
+        fileList.appendChild(fileItem);
+    }
 
-.upload-section {
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-#file-input {
-    margin: 10px 0;
-}
-
-#upload-btn {
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#upload-btn:hover {
-    background-color: #218838;
-}
-
-.files-section {
-    margin-top: 20px;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    background: #e9ecef;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-footer {
-    text-align: center;
-    margin-top: 20px;
-}
+    uploadStatus.textContent = "Files uploaded successfully!";
+    fileInput.value = ""; // Reset file input
+});
